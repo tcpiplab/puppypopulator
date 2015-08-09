@@ -37,22 +37,25 @@ session = DBSession()
 
 # Query 1
 def query1():
-  # Create an object containing a list of all names in the Puppy table, and sort.
+  # Create an object containing a list of all rows in the Puppy table, 
+  # and sort by name.
   puppies = session.query(Puppy).order_by(Puppy.name).all()
   
-  # Iterate through the object to print all rows.
+  # Iterate through the object to print all names.
   for puppy in puppies:
     print puppy.name
 
 # Query 2
-# 2. Query all of the puppies that are less than 6 months old organized by 
-#    the youngest first.
 def query2():
+  # Create an object containing a list of all rows in the Puppy table, 
+  # and sort by weight.
   puppies = session.query(Puppy).order_by(Puppy.weight).all()
 
+  # Iterate through the object to print name and weight
   for puppy in puppies:
-    print puppy.name
-    print puppy.weight
+    # weight is stored as a string, but sqlalchemy converts to a float
+    # requiring us to recast as a string. Then we truncate to 5 characters. 
+    print puppy.name, str(puppy.weight)[:5]
 
 # MAIN()
 query1()
