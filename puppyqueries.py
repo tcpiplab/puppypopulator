@@ -54,7 +54,7 @@ def allPuppyNames():
 def puppiesUnder6Months():
   """
   Query the Puppy table for all puppies < 6 months old. Then print the puppy 
-  names and weight, sorted by youngest first.
+  names and dateOfBirth, sorted by youngest first.
   """
   # Grab today's date
   today = date.today()
@@ -64,7 +64,7 @@ def puppiesUnder6Months():
 
   # Create an object containing a list of all rows in the Puppy table, 
   # and sort by dateOfBirth.
-  puppies = session.query(Puppy.name, Puppy.dateOfBirth, Puppy.dateOfBirth < six_months, Puppy.weight).order_by(desc(Puppy.dateOfBirth)).all()
+  puppies = session.query(Puppy.name, Puppy.dateOfBirth, Puppy.dateOfBirth < six_months).order_by(desc(Puppy.dateOfBirth)).all()
 
   # Iterate through the object to print name and dateOfBirth
   for puppy in puppies:
