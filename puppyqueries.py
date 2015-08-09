@@ -15,7 +15,7 @@
 # 4. Query all puppies grouped by the shelter in which they are staying.
 
 # Dependencies
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
 
 # From our existing database
@@ -56,13 +56,14 @@ def puppiesUnder6Months():
   """
   # Create an object containing a list of all rows in the Puppy table, 
   # and sort by weight.
-  puppies = session.query(Puppy).order_by(Puppy.weight).all()
+  puppies = session.query(Puppy.name, Puppy.dateOfBirth, Puppy.weight).order_by(desc(Puppy.dateOfBirth)).all()
 
   # Iterate through the object to print name and weight
   for puppy in puppies:
     # weight is stored as a string, but sqlalchemy converts to a float
     # requiring us to recast as a string. Then we truncate to 5 characters. 
     print puppy.name, str(puppy.weight)[:5]
+    print puppy.dateOfBirth
 
 # MAIN()
 allPuppyNames()
