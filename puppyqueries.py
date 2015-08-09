@@ -44,6 +44,17 @@ def query1():
   for puppy in puppies:
     print puppy.name
 
+# Query 2
+# 2. Query all of the puppies that are less than 6 months old organized by 
+#    the youngest first.
+def query2():
+  puppies = session.query(Puppy).order_by(Puppy.weight).all()
+
+  for puppy in puppies:
+    print puppy.name
+    print puppy.weight
+
 # MAIN()
 query1()
+query2()
 
