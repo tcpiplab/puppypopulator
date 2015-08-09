@@ -24,7 +24,7 @@ class Puppy(Base):
     picture = Column(String)
     shelter_id = Column(Integer, ForeignKey('shelter.id'))
     shelter = relationship(Shelter)
-    weight = Column(Numeric(10))
+    weight = Column(String(10))
 
 
 engine = create_engine('sqlite:///puppyshelter.db')
