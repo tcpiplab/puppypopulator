@@ -36,11 +36,14 @@ DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
 # Query 1
-# Create an object containing a list of all names in the Puppy table, and sort.
-puppies = session.query(Puppy).order_by(Puppy.name).all()
+def query1():
+  # Create an object containing a list of all names in the Puppy table, and sort.
+  puppies = session.query(Puppy).order_by(Puppy.name).all()
+  
+  # Iterate through the object to print all rows.
+  for puppy in puppies:
+    print puppy.name
 
-# Iterate through the object to print all rows.
-for puppy in puppies:
-  print puppy.name
-
+# MAIN()
+query1()
 
