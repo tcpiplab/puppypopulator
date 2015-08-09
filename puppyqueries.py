@@ -15,7 +15,6 @@
 # 4. Query all puppies grouped by the shelter in which they are staying.
 
 # Dependencies
-#import time
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from sqlalchemy import create_engine, desc
@@ -67,14 +66,27 @@ def puppiesUnder6Months():
   # and sort by dateOfBirth.
   puppies = session.query(Puppy.name, Puppy.dateOfBirth, Puppy.dateOfBirth < six_months, Puppy.weight).order_by(desc(Puppy.dateOfBirth)).all()
 
-  # Iterate through the object to print name and weight
+  # Iterate through the object to print name and dateOfBirth
   for puppy in puppies:
-    # weight is stored as a string, but sqlalchemy converts to a float
-    # requiring us to recast as a string. Then we truncate to 5 characters. 
-    #print puppy.name, str(puppy.weight)[:5]
     print puppy.name, puppy.dateOfBirth
+
+
+# Query 3
+def puppyWeights():
+   """
+   Query the Puppy table for all names and weights, sorted by ascending weight. 
+   """
+   # Query all puppies by ascending weight
+   puppies = session.query(Puppy.name, Puppy.weight).order_by(Puppy.weight).all()
+
+   # Iterate through the object to print name and weight
+   for puppy in puppies:
+     # weight is stored as a string, but sqlalchemy converts to a float
+     # requiring us to recast as a string. Then we truncate to 5 characters. 
+     print puppy.name, str(puppy.weight)[:5]
+
 
 # MAIN()
 allPuppyNames()
 puppiesUnder6Months()
-
+puppyWeights()
