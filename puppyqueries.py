@@ -36,7 +36,7 @@ DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
 # Query 1
-def query1():
+def allPuppyNames():
   """
   Query the Puppy table and print the puppy names in alphabetical order
   """
@@ -49,7 +49,7 @@ def query1():
     print puppy.name
 
 # Query 2
-def query2():
+def puppiesUnder6Months():
   """
   Query the Puppy table for all puppies < 6 months old. Then print the puppy 
   names and weight, sorted by youngest first.
@@ -65,6 +65,6 @@ def query2():
     print puppy.name, str(puppy.weight)[:5]
 
 # MAIN()
-query1()
-query2()
+allPuppyNames()
+puppiesUnder6Months()
 
