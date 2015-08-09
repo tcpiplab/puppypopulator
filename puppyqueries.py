@@ -37,6 +37,9 @@ session = DBSession()
 
 # Query 1
 def query1():
+  """
+  Query the Puppy table and print the puppy names in alphabetical order
+  """
   # Create an object containing a list of all rows in the Puppy table, 
   # and sort by name.
   puppies = session.query(Puppy).order_by(Puppy.name).all()
@@ -47,6 +50,10 @@ def query1():
 
 # Query 2
 def query2():
+  """
+  Query the Puppy table for all puppies < 6 months old. Then print the puppy 
+  names and weight, sorted by youngest first.
+  """
   # Create an object containing a list of all rows in the Puppy table, 
   # and sort by weight.
   puppies = session.query(Puppy).order_by(Puppy.weight).all()
