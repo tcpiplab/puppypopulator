@@ -115,8 +115,32 @@ def puppiesByShelter():
     # Always print the puppy name.
     print "  " + puppy.Puppy.name
 
-# MAIN()
-allPuppyNames()
-puppiesUnder6Months()
-puppyWeights()
-puppiesByShelter()
+
+# only show the menu if invoked as a command line tool
+if __name__ == '__main__':
+  while 1:
+    print("""
+
+    1) Show all puppy names in alphabetical order.
+
+    2) Show all puppies under six months old, youngest to oldest.
+
+    3) Show all puppies by ascending weight.
+
+    4) Show all puppies grouped by their shelters.
+
+    5) Exit.
+
+    """)
+
+    selection = int(input('Select a menu item: '))
+    if selection == 1:
+        allPuppyNames()
+    elif selection == 2:
+        puppiesUnder6Months()
+    elif selection == 3:
+        puppyWeights()
+    elif selection == 4:
+        puppiesByShelter()
+    elif selection == 5:
+        exit()
