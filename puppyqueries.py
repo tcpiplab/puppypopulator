@@ -64,7 +64,8 @@ def puppiesUnder6Months():
 
   # Create an object containing a list of all rows in the Puppy table, 
   # and sort by dateOfBirth.
-  puppies = session.query(Puppy.name, Puppy.dateOfBirth, Puppy.dateOfBirth < six_months).order_by(desc(Puppy.dateOfBirth)).all()
+  puppies = session.query(Puppy.name, Puppy.dateOfBirth, Puppy.dateOfBirth < 
+                          six_months).order_by(desc(Puppy.dateOfBirth)).all()
 
   # Iterate through the object to print name and dateOfBirth
   for puppy in puppies:
@@ -95,7 +96,8 @@ def puppiesByShelter():
   # Query the Puppy and Shelter tables, filtering to match Shelter.id with the 
   # foreign key Puppy.shelter_id so we can get the name of each puppy's shelter.
   # Order by the shelter name.
-  puppies = session.query(Puppy, Shelter).filter( Puppy.shelter_id == Shelter.id).order_by(Shelter.name).all()
+  puppies = session.query(Puppy, Shelter).filter(Puppy.shelter_id == 
+                          Shelter.id).order_by(Shelter.name).all()
 
   # Keep track of which shelter the previous puppy lives in. Initialize empty.
   prev_shelter = ''
