@@ -73,18 +73,17 @@ def puppiesUnder6Months():
 
 # Query 3
 def puppyWeights():
-   """
-   Query the Puppy table for all names and weights, sorted by ascending weight. 
-   """
-   # Query all puppies by ascending weight
-   puppies = session.query(Puppy.name, Puppy.weight).order_by(Puppy.weight).all()
+  """
+  Query the Puppy table for all names and weights, sorted by ascending weight. 
+  """
+  # Query all puppies by ascending weight
+  puppies = session.query(Puppy.name, Puppy.weight).order_by(Puppy.weight).all()
 
-   # Iterate through the object to print name and weight
-   for puppy in puppies:
-     # weight is stored as a string, but sqlalchemy converts to a float
-     # requiring us to recast as a string. Then we truncate to 5 characters. 
-     print puppy.name, str(puppy.weight)[:5]
-
+  # Iterate through the object to print name and weight
+  for puppy in puppies:
+    # weight is stored as a string, but sqlalchemy converts to a float
+    # requiring us to recast as a string. Then we truncate to 5 characters. 
+    print puppy.name, str(puppy.weight)[:5]
 
 # MAIN()
 allPuppyNames()
