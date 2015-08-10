@@ -85,7 +85,36 @@ def puppyWeights():
     # requiring us to recast as a string. Then we truncate to 5 characters. 
     print puppy.name, str(puppy.weight)[:5]
 
+
+# Query 4
+def puppiesByShelter():
+  """
+  Query the database for all puppy names and shelter names, printing each 
+  shelter name once and indenting puppy names below their respective shelters.
+  """
+  # Query the Puppy and Shelter tables, filtering to match Shelter.id with the 
+  # foreign key Puppy.shelter_id so we can get the name of each puppy's shelter.
+  # Order by the shelter name.
+  puppies = session.query(Puppy, Shelter).filter( Puppy.shelter_id == Shelter.id).order_by(Shelter.name).all()
+
+  # Keep track of which shelter the previous puppy lives in. Initialize empty.
+  prev_shelter = ''
+
+  # Iterate through the oject to print puppy names indented under their 
+  # respective shelter names.
+  for puppy in puppies:
+    # Strip any trailing whitespace
+    this_shelter = str(puppy.Shelter.name).rstrip()
+    # Only print shelter name if it differs from that of the previous puppy.
+    if prev_shelter != this_shelter: 
+      print this_shelter
+      # Remember the most recent shelter name.
+      prev_shelter = this_shelter
+    # Always print the puppy name.
+    print "  " + puppy.Puppy.name
+
 # MAIN()
 allPuppyNames()
 puppiesUnder6Months()
 puppyWeights()
+puppiesByShelter()
